@@ -1,5 +1,3 @@
-'use strict'
-
 const MAX_OUTPUT_ROWS = 10000;
 
 const SERVER_PREFIX	= "SERVER:";
@@ -116,7 +114,10 @@ class TextIO{
 	}
 	
 	scrollOutputToBottom(){
-		this.output.scrollBy(0, 100000000); //This is a big number
+		if(this.output.scrollBy) //Check if browser supports it
+			this.output.scrollBy(0, 100000000); //This is a big number
+		else
+			this.ouput.scrollTop = 100000000;
 	}
 	
 	outputAppend(element){
